@@ -34,7 +34,7 @@ spec:
       containers:
       - name: axon-api
         image: tdien105/axon
-
+        imagePullPolicy: Always
         env:
         - name: api_url
           value: http://localhost/ent

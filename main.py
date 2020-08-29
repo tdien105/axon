@@ -37,7 +37,7 @@ def parsejson():
       lines[index] = line # update back to origin text
     
     result = json.loads('\n'.join(lines))
-    result['AXON_INTERVIEW'] = "true"
+    result['AXON'] = "true"
     return result
   return "Could not fetch json files"
 
