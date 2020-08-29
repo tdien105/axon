@@ -11,3 +11,4 @@ jobs:
         name: tdien105/axon
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        tags: "${{ env.RELEASE_VERSION }}"
