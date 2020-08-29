@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,12 +34,11 @@ spec:
 
       containers:
       - name: axon-api
-        image: tdien105/axon
-        imagePullPolicy: Always
+        image: tdien105/axon:sha-70bfa21
         env:
         - name: api_url
           value: http://localhost/ent
-        
+
         ports:
         - containerPort: 5000
           protocol: TCP
@@ -63,13 +63,13 @@ spec:
           timeoutSeconds: 3
 
       - name: spacy-api
-        image: jgontrum/spacyapi:en_v2
+        image: jgontrum/spacyapi:all_v2
 
-        livenessProbe:
+        readinessProbe:
           tcpSocket:
             port: 80
           initialDelaySeconds: 30
-          periodSeconds: 60
+          periodSeconds: 15
           successThreshold: 1
           failureThreshold: 5
           timeoutSeconds: 3
