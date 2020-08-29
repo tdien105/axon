@@ -9,7 +9,7 @@ For extracting human names from a remote json file.
 - installed gitops (fluxcd) into cluster
 
 # Deploy:
-- apply all yaml files inside deploy/ folder at this repo
+- apply all yaml files inside deploy/k8s folder at this repo
 - wait untill all pods up
 
 # Test:
@@ -44,3 +44,6 @@ curl -d '{"json_link": "http://therecord.co/feed.json"}' -H "Content-Type: appli
   - PDB: make sure there will be at least one pod running
   - Update strategy: Rolling update. So k8s will deploy one by one, so in case there's problem with the code, it wont break the service.
   - PodAntiAffinity: Make sure two pods will not be placed at the same node.
+
+# Limitations:
+- In some cases, the lib (spaCy) couldnt extract the names. 
