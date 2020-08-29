@@ -31,7 +31,7 @@ def parsejson():
         for i in r:
           n = i['text']
           if i['type'] == "PERSON":
-            line = line.replace(n,'___') # remove name from current line
+            line = line.replace(n,'___') # replace name to ___ from current line
       else:
         return "Error occur when connecting to backend api"
       lines[index] = line # update back to origin text
