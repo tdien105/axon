@@ -4,11 +4,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+    - uses: actions/checkout@v1.0
+      name: Check out code
+
+    - uses: mr-smithers-excellent/docker-build-push@v4
+      name: Build & push Docker image
       with:
-        name: tdien105/axon
+        image: tdien105/axon
+        registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tags: "${{ env.RELEASE_VERSION }}"
