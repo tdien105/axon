@@ -2,15 +2,15 @@
 
 For extracting human names from a remote json file
 
-Prerequisite:
+#Prerequisite:
 - k8s cluster with at least two nodes
 - installed gitops (fluxcd) into cluster
 
-Deploy:
+#Deploy:
 - apply all yaml files inside deploy/ folder at this repo
 - wait untill all pods up
 
-Test:
+#Test:
 - get the current public domain for this service
 ```
 kubectl get svc/axon-api
@@ -27,10 +27,10 @@ axon-api   LoadBalancer   172.20.52.248   aef0c8dc6ba724b039cea938cc25397e-17499
 curl -d '{"json_link": "http://therecord.co/feed.json"}' -H "Content-Type: application/json" -X POST aef0c8dc6ba724b039cea938cc25397e-1749958889.ap-southeast-1.elb.amazonaws.com
 ```
 
-Tools:
+#Tools:
 - https://github.com/jgontrum/spacy-api-docker
   - This lib is for extracting human names from a text
 
-CI/CD flow:
+#CI/CD flow:
 - I used GitOps flow using FluxCD (https://fluxcd.io).
 ![gitops](flux.png)
