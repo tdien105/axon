@@ -1,5 +1,7 @@
 # axon
 
+For extracting human names from a remote json file
+
 Prerequisite:
 - k8s cluster with at least two nodes
 - installed gitops (fluxcd) into cluster
@@ -29,4 +31,5 @@ Tools:
   - This lib is for extracting human names from a text
 
 CI/CD flow:
-- I used GitOps flow using FluxCD (https://fluxcd.io)
+- I used GitOps flow using FluxCD (https://fluxcd.io).
+![gitops](flux.png)
