@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: axon-api
+  name: axon-api
+  annotations:
+    fluxcd.io/automated: 'true'
+spec:
+  selector:
+    matchLabels:
+      app: axon-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: axon-api
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - axon-api
+            topologyKey: "kubernetes.io/hostname"
+
+      containers:
+      - name: axon-api
+        image: tdien105/axon
+
+        env:
+        - name: api_url
+          value: http://localhost/ent
+        
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+
+        livenessProbe:
+          tcpSocket:
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 5
+          timeoutSeconds: 3
+
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+          successThreshold: 5
+          failureThreshold: 3
+          timeoutSeconds: 3
+
+      - name: spacy-api
+        image: jgontrum/spacyapi:en_v2
+
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          successThreshold: 1
+          failureThreshold: 5
+          timeoutSeconds: 3
+
+        resources:
+          requests:
+            memory: 200Mi
+            cpu: 200m
+
+      restartPolicy: Always

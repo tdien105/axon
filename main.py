@@ -8,6 +8,9 @@ app = Flask(__name__)
 api_url = os.environ['api_url']
 ### end global vars
 
+@app.route("/ping", methods=["GET"])
+def healthcheck():
+  return "pong"
 
 @app.route("/", methods=["POST"])
 def parsejson():
