@@ -1,5 +1,12 @@
 name: Publish Docker
-on: [push]
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    paths:
+      - '**.py'
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
