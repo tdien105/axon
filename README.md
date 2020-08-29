@@ -24,7 +24,7 @@ axon-api   LoadBalancer   172.20.52.248   aef0c8dc6ba724b039cea938cc25397e-17499
   - value: your json link that you want to transform
 
 ```
-curl -d '{"json_link": "http://therecord.co/feed.json"}' -H "Content-Type: application/json" -X POST aef0c8dc6ba724b039cea938cc25397e-1749958889.ap-southeast-1.elb.amazonaws.com
+curl -d '{"json_link": "http://therecord.co/feed.json"}' -H "Content-Type: application/json" -X POST aef0c8dc6ba724b039cea938cc25397e-1749958889.ap-southeast-1.elb.amazonaws.com```
 
 Tools:
 - https://github.com/jgontrum/spacy-api-docker
